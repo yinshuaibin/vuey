@@ -1,0 +1,51 @@
+idea debug:https://blog.csdn.net/qq_27093465/article/details/64124330
+
+//sublit方法获得的子数据,子数据修改以后会影响到父数据
+
+两个同样的对象用=号可以实现属性赋值,对象引用不清楚
+list.sublit(0,2),截取前2个数据,生成一个新的list集合,原有list不会更改
+Collenctions:集合工具类
+
+java多线程:https://blog.csdn.net/gf771115/article/details/51682561?utm_source=blogxgwz1
+
+nginx:http://www.cnblogs.com/sunshine-2015/p/5638524.html
+
+nginx安装：https://www.cnblogs.com/qfb620/p/5508468.html
+
+nginx参数配置:https://www.2cto.com/os/201212/176520.html
+
+qs序列化:https://blog.csdn.net/suwu150/article/details/78333452
+
+spring boot shiro 整合  https://blog.csdn.net/u013615903/article/details/78781166#commentBox
+
+
+ftp:https://blog.csdn.net/lemon_tree12138/article/details/49777467
+
+shift + 0  解决黑点
+# 1，查看event是否启用  
+SELECT @@event_scheduler; 
+
+# 注意:电脑重启后,定时任务失效.如果想长期有效,关闭mysql服务,在my.ini添加  event_scheduler=ON 之后重启mysql服务
+#	(在添加上面的语句时,配置文件不能有skip-grant-tables,如果有,删掉skip-grant-tables )
+
+# 2. 开启定时任务
+SET GLOBAL event_scheduler = ON;
+
+iview 表单验证 https://blog.csdn.net/amanda_wmy/article/details/79026940   https://blog.csdn.net/qq_35909852/article/details/78725207
+
+https://www.jianshu.com/p/489fa450d3d2 npm 安装
+
+http://www.ruanyifeng.com/blog/2014/06/git_remote.html 简单的git
+
+http://wiki.jikexueyuan.com/project/d3wiki/selection.html d3简单上手
+
+
+https://blog.csdn.net/dreamof2015/article/details/82118220 vue+d3
+
+  
+windows使用git时出现：warning: LF will be replaced by CRLF     https://blog.csdn.net/unityoxb/article/details/20768687
+
+http://www.ruanyifeng.com/blog/2014/06/git_remote.html 阮一峰git
+
+
+https://codepen.io/marxtseng/pen/oBVjvB d3练习
