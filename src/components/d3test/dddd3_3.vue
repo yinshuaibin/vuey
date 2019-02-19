@@ -122,10 +122,22 @@ export default {
         .append('svg')
         .attr('width', width + margin.right + margin.left)
         .attr('height', height + margin.top + margin.bottom)
+
         // 在svg中 添加group元素
-        .append('g')
+       var ivew = svg.append('g')
         // 将group放置在左上方
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+
+      // 创建zoom操作
+      var zoom = d3.zoom()
+        .scaleExtent([1, 8]) // 设置缩放区域为1-8倍
+        .on('zoom', () => {
+          ivew.attr('transform', 'translate(' + d3.event.transform.x + margin.left + ',' +
+          (d3.event.transform.y + margin.top) + ') scale(' + d3.transform.k + ')')
+        })
+      // svg绑定zoom事件
+      svg.call(zoom).on('dblclick.zoom', () => {})
+
       var i = 0
       var duration = 750
       var root = {}
