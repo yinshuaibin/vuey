@@ -66,8 +66,8 @@ export default {
   mounted () {
     const size = this.getSize()
     const svg = d3.select(this.$el).append('svg')
-          .attr('width', size.width)
-          .attr('height', size.height)
+      .attr('width', size.width)
+      .attr('height', size.height)
     const g = this.transformSvg(svg.append('g'), size)
 
     const tree = this.tree
@@ -195,7 +195,7 @@ export default {
       const line = layout.getLine(d3).curve(d3.curveBundle.beta(0.95))
 
       const newEdges = edges.enter().append('path').attr('class', 'link')
-                            .attr('d', d => roundPath(line(d.source.path(d.target).map(p => ({x: p.x, y: 0.1})))))
+        .attr('d', d => roundPath(line(d.source.path(d.target).map(p => ({x: p.x, y: 0.1})))))
 
       const allEdges = this.internaldata.edges = edges.merge(newEdges)
       const promise = toPromise(allEdges.transition().duration(this.duration).attr('d', d => roundPath(line(d.source.path(d.target)))))
@@ -230,19 +230,19 @@ export default {
       const rootElement = d3.selectAll([this.$el]).style('display', 'none').classed('detailed', true)
 
       edges.filter(l => l.target === d || l.source === d)
-      .classed('link--target', function (l) {
-        if (l.target === d) {
-          l.source.source = true
-          return true
-        }
-      })
-      .classed('link--source', function (l) {
-        if (l.source === d) {
-          l.target.target = true
-          return true
-        }
-      })
-      .raise()
+        .classed('link--target', function (l) {
+          if (l.target === d) {
+            l.source.source = true
+            return true
+          }
+        })
+        .classed('link--source', function (l) {
+          if (l.source === d) {
+            l.target.target = true
+            return true
+          }
+        })
+        .raise()
 
       const nodesSelected = nodes.filter(n => ((n.target) || (n.source) || (n === d)))
         .classed('node--target', n => n.target)
@@ -265,14 +265,14 @@ export default {
       const rootElement = d3.selectAll([this.$el]).style('display', 'none').classed('detailed', false)
 
       edges.classed('link--target', false)
-          .classed('link--source', false)
+        .classed('link--source', false)
 
       nodes.classed('node--target', false)
-          .classed('node--source', false)
-          .classed('node--selected', false)
+        .classed('node--source', false)
+        .classed('node--selected', false)
 
       nodes.filter(n => ((n.target) || (n.source) || (n === d)))
-          .select('text').attr('dx', d => d.textInfo.standardDx)
+        .select('text').attr('dx', d => d.textInfo.standardDx)
 
       rootElement.style('display', 'block')
     },

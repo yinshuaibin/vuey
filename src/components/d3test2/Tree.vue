@@ -113,7 +113,7 @@ export default {
 
     if (this.zoomable) {
       g = svg.append('g')
-      zoom = d3.zoom().scaleExtent([0.9, 8]).on('zoom', this.zoomed(g))
+      zoom = d3.zoom().scaleExtent([0.1, 8]).on('zoom', this.zoomed(g))
       svg.call(zoom).on('wheel', () => d3.event.preventDefault())
       svg.call(zoom.transform, d3.zoomIdentity)
     } else {
@@ -395,6 +395,7 @@ export default {
     },
 
     expand (d, update = true) {
+      console.log(d.data)
       if (!d._children) {
         restApi.getAllUser(1, 1000).then(data => {
           if (data.resultList) {
@@ -407,7 +408,6 @@ export default {
         })
         return Promise.resolve(false)
       }
-
       d.children = d._children
       d._children = null
       this.$emit('expand', {element: d, data: d.data})
@@ -463,6 +463,9 @@ export default {
       const {svg, zoom} = this.internaldata
       const transitionPromise = toPromise(svg.transition().duration(this.duration).call(zoom.transform, () => d3.zoomIdentity))
       return transitionPromise.then(() => true)
+    },
+    testAlert () {
+      alert(123)
     }
   },
 
@@ -559,7 +562,7 @@ export default {
 .treeclass .linktree {
   fill: none;
   stroke: #555;
-  stroke-opacity: 0.4;
+  stroke-opacity: 0.4; /** d3的css属性 **/
   stroke-width: 1.5px;
 }
 

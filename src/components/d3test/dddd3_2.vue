@@ -17,12 +17,13 @@
 </style>
 <template>
 <div>
-  <d3-tree :data="treey" node-text="name" zoomable="true" radius="10" style="width:800px;height:1000px"></d3-tree>
+  <d3-tree ref="d3tree" @expand="expand" :data="treey" node-text="name" zoomable="true" radius="10" style="width:800px;height:1800px"></d3-tree>
 </div>
 </template>
 <script>
 import * as d3 from 'd3'
 import d3Tree from '../d3test2/Tree.vue'
+import listToTree from '@/utils/listTotree'
 export default {
   name: 'd3Test',
   components: {
@@ -58,12 +59,15 @@ export default {
       rectHeight: 60,
       treey: {
         name: '第一个节点',
+        id: 1,
         children: [
           {
-            name: '123'
+            name: '123',
+            id: 2
           },
           {
-            name: '456'
+            name: '456',
+            id: 3
           }
         ]
       }
@@ -71,8 +75,15 @@ export default {
   },
   mounted () {
     // this.makeZ2()
+    var listDate = [{id: 1, name: '顶级父'}, {id: 2, name: '子1', parentId: 1}, {id: 3, name: '子2', parentId: 1}, {id: 4, name: '子1子1', parentId: 2},
+      {id: 5, name: '子1子2', parentId: 2}, {id: 6, name: '子1子1子', parentId: 4}]
+    console.log(listToTree(listDate))
   },
   methods: {
+    expand ({element, data}) {
+      console.log(element)
+      this.$refs.d3tree.testAlert()
+    },
     makeZ2 () {
       var _this = this
       // 设置图表的宽高和margin
