@@ -2,6 +2,13 @@
   <div>
     <h1>{{ msg }}</h1>
     <h2>1111111111111111111111111111111111111111111111111111111111111111</h2>
+    <Form>
+      <FormItem label="用户名">
+        <Input type="text" v-model="loginUser.username" placeholder="Username">
+          <Icon type="ios-person-outline" slot="prepend"></Icon>
+        </Input>
+      </FormItem>
+    </Form>
     <Button @click="getAllUser()">点我</Button>
   </div>
 </template>
@@ -19,7 +26,10 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      loginUser: {
+        username: ''
+      }
     }
   },
   created () {
