@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import login from '@/components/login'
 import d3test from '@/components/d3test/dddd3_2.vue'
 import d3test3 from '@/components/d3test/ddd4'
+import mainvue from '@/components/main'
 
 Vue.use(Router)
 
@@ -12,7 +13,12 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: '/d3test',
+      name: 'mainvue',
+      component: mainvue
+    },
+    {
+      path: '/d3',
+      name: 'd3test3',
       component: d3test
     },
     {

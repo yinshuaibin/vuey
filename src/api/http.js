@@ -4,11 +4,11 @@ import axios from 'axios'
 // npm仓库管理的包,可通过npm install qs进行安装
 import qs from 'qs'
 // 引入请求的地址
-import baseUrl from '@/utils/globalConfig.js'
+import {baseUrl} from '@/utils/globalConfig.js'
 // 引入消息提示
 import Message from 'iview/src/components/message/index'
 
-import router from '@/router/index.js'
+import store from '@/store/index.js'
 
 // 设置提示
 Message.config({
@@ -37,7 +37,7 @@ instance.interceptors.response.use(response => {
   return response
 }, error => {
   if (!error.response) {
-    router.push({path: '/login', query: {errorCode: '399'}})
+    store.commit('setErrorCode', '399')
     return
   }
   // 当响应异常时做一些处理
@@ -61,7 +61,9 @@ export function get (url, obj) {
     instance.get(url, {
       params: obj
     }).then(function (response) {
-      resolve(response.data)
+      if (response) {
+        resolve(response.data)
+      }
     }).catch(function (err) {
       reject(err)
     })
@@ -71,7 +73,9 @@ export function get (url, obj) {
 export function post (url, params) {
   return new Promise((resolve, reject) => {
     instance.post(url, params).then(function (response) {
-      resolve(response.data)
+      if (response) {
+        resolve(response.data)
+      }
     }).catch(function (err) {
       reject(err)
     })
@@ -81,7 +85,9 @@ export function post (url, params) {
 export function put (url, params) {
   return new Promise((resolve, reject) => {
     instance.put(url, params).then(function (response) {
-      resolve(response.data)
+      if (response) {
+        resolve(response.data)
+      }
     }).catch(function (err) {
       reject(err)
     })
@@ -91,7 +97,9 @@ export function put (url, params) {
 export function patch (url, params) {
   return new Promise((resolve, reject) => {
     instance.patch(url, params).then(function (response) {
-      resolve(response.data)
+      if (response) {
+        resolve(response.data)
+      }
     }).catch(function (err) {
       reject(err)
     })
@@ -108,7 +116,9 @@ export function remove (url, obj) {
     instance.delete(url, {
       params: obj
     }).then(function (response) {
-      resolve(response.data)
+      if (response) {
+        resolve(response.data)
+      }
     }).catch(function (err) {
       reject(err)
     })

@@ -7,5 +7,4 @@ const devUrl = 'http://127.0.0.1:8888'
 const prodUrl = 'http://127.0.0.1:8888'
 // 备用地址
 const backUpUrl = 'http://127.0.0.1:10086'
-const baseUrl = env === 'development' ? devUrl : env === 'production' ? prodUrl : backUpUrl
-export default baseUrl
+export const baseUrl = env === 'development' ? devUrl : env === 'production' ? prodUrl : backUpUrl
