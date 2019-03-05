@@ -67,9 +67,10 @@ export default {
     },
     onConnected (frame) {
       // web端订阅后端发布接口
-      let destination = WS_DEST_USER + '/'
+      let destination = WS_DEST_USER + '/1'
       this.$stompClient.subscribe(destination, val => {
-        // 如果返回了结果,则说明报警刷新,提示报警服务.
+        // 如果返回了结果
+        console.log(val.body)
         if (val.body) {
           alert('websocket发送消息成功')
         }
