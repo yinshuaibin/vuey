@@ -1,8 +1,17 @@
 <template>
   <div>
-    <h1>{{ msg }}</h1>
-    <h2>1111111111111111111111111111111111111111111111111111111111111111</h2>
-    <Button @click="getAllUser()">点我</Button>
+    <Form :model="loginUser" rule="">
+      <FormItem class="formItem" prop="username" label="用户名">
+        <Input type="text" v-model="loginUser.username" placeholder="用户名">
+          <Icon type="ios-person-outline" slot="prepend"></Icon>
+        </Input>
+      </FormItem>
+      <FormItem class="formItem" prop="password" label="密码">
+        <Input type="password" v-model="loginUser.password" placeholder="密码">
+          <Icon type="ios-lock-outline" slot="prepend"></Icon>
+        </Input>
+       </FormItem>
+    </Form>
   </div>
 </template>
 
@@ -12,7 +21,10 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      loginUser: {
+        username: '',
+        password: ''
+      }
     }
   },
   methods: {
@@ -20,16 +32,9 @@ export default {
       restApi.getAllUser(1, 100).then(data => {
         alert(data)
       })
-    },
-    checkIsError () {
-      if (this.$route.query.errorCode === '399') {
-        alert('您还没有登录,请重新登录后再进行操作')
-      }
     }
   },
-  mounted () {
-    this.checkIsError()
-  }
+  mounted () { }
 }
 </script>
 

@@ -20,3 +20,6 @@ restApi.getAllUser = (pageNum, pageSize) => {
 restApi.insertUser = (param) => {
   return post('/insertUser', param)
 }
+restApi.login = (param) => {
+  return post('/login', param)
+}

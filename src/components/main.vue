@@ -8,18 +8,6 @@
   <div>
     <h1>{{ msg }}</h1>
     <h2>1111111111111111111111111111111111111111111111111111111111111111</h2>
-    <Form :model="loginUser" rule="">
-      <FormItem class="formItem" prop="username" label="用户名">
-        <Input type="text" v-model="loginUser.username" placeholder="用户名">
-          <Icon type="ios-person-outline" slot="prepend"></Icon>
-        </Input>
-      </FormItem>
-      <FormItem class="formItem" prop="password" label="密码">
-        <Input type="password" v-model="loginUser.password" placeholder="密码">
-          <Icon type="ios-lock-outline" slot="prepend"></Icon>
-        </Input>
-       </FormItem>
-    </Form>
     <Button @click="getAllUser()">点我</Button>
   </div>
 </template>

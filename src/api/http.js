@@ -7,8 +7,10 @@ import qs from 'qs'
 import {baseUrl} from '@/utils/globalConfig.js'
 // 引入消息提示
 import Message from 'iview/src/components/message/index'
-
+// 引入全局store
 import store from '@/store/index.js'
+// 引入token操作
+import {getToken} from '@/utils/auth.js'
 
 // 设置提示
 Message.config({
@@ -31,8 +33,23 @@ var instance = axios.create({
   },
   timeout: 100000
 })
+// request拦截器
+instance.interceptors.request.use(
+  config => {
+    if (store.getters.token) {
+      config.headers['X-Token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+    }
+    return config
+  },
+  error => {
+    // Do something with request error
+    console.log(error) // for debug
+    Promise.reject(error)
+  }
+)
 // 响应时拦截
 instance.interceptors.response.use(response => {
+  console.log(response)
   // 返回响应时做一些处理
   return response
 }, error => {
