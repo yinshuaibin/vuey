@@ -8,8 +8,13 @@ import 'iview/dist/styles/iview.css'
 import store from './store/index.js'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import moment from './utils/moment.js'
+import lodash from './utils/lodash.js'
+
 Vue.use(iView)
 Vue.use(ElementUI)
+Vue.use(moment)
+Vue.use(lodash)
 
 Vue.config.productionTip = false
 

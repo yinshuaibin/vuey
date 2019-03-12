@@ -69,6 +69,9 @@ export default {
       }
     },
     login () {
+      alert(this.$_.add(6, 4))
+      let x = this.$moment().add(3, 'month').format('YYYY-MM-DD')
+      alert(x)
       this.$refs['loginUser'].validate(valid => {
         if (valid) {
           // this.loading = true
