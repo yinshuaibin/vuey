@@ -40,8 +40,8 @@ export default {
     }
     return {
       loginUser: {
-        username: 'admin',
-        password: 'admin'
+        username: 'ss',
+        password: '1'
       },
       loginRules: {
         username: [{required: true, trigger: 'blur'}, { validator: validateUsername }],
@@ -60,6 +60,11 @@ export default {
     //   immediate: true
     // }
   },
+  created () {
+    if (this.$store.getters.getErrorCode === '399') {
+      this.$Message.error('尚未登录或登录状态失效, 请重新登录')
+    }
+  },
   methods: {
     showPwd () {
       if (this.pwdType === 'password') {
@@ -69,9 +74,6 @@ export default {
       }
     },
     login () {
-      alert(this.$_.add(6, 4))
-      let x = this.$moment().add(3, 'month').format('YYYY-MM-DD')
-      alert(x)
       this.$refs['loginUser'].validate(valid => {
         if (valid) {
           // this.loading = true

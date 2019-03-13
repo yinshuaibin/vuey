@@ -11,11 +11,13 @@ import Message from 'iview/src/components/message/index'
 import store from '@/store/index.js'
 // 引入token操作
 import {getToken} from '@/utils/auth.js'
+// 引入路由,未登录或登录失效时跳转使用
+import router from '@/router/index.js'
 
 // 设置提示
 Message.config({
-  top: 350,
-  duration: 6
+  top: 550,
+  duration: 50
 })
 // ajax统一请求设置
 var instance = axios.create({
@@ -55,6 +57,7 @@ instance.interceptors.response.use(response => {
 }, error => {
   if (!error.response) {
     store.commit('setErrorCode', '399')
+    router.push('/')
     return
   }
   // 当响应异常时做一些处理

@@ -9,6 +9,7 @@
     <h1>{{ msg }}</h1>
     <h2>1111111111111111111111111111111111111111111111111111111111111111</h2>
     <Button @click="getAllUser()">点我</Button>
+    <Button @click="test">测试全局lodash与moment</Button>
   </div>
 </template>
 
@@ -35,17 +36,17 @@ export default {
     Vue.prototype.$stompClient = Stomp.over(new SockJS(WS_URL))
   },
   watch: {
-    errorCode (val, oldVar) {
-      if (val === '399') {
-        this.alert1()
-      }
-      this.$store.commit('setErrorCode', '0')
-    }
+    // errorCode (val, oldVar) {
+    //   if (val === '399') {
+    //     this.alert1()
+    //   }
+    //   this.$store.commit('setErrorCode', '0')
+    // }
   },
   computed: {
-    errorCode () {
-      return this.$store.getters.getErrorCode
-    }
+    // errorCode () {
+    //   return this.$store.getters.getErrorCode
+    // }
   },
   methods: {
     connect () {
@@ -55,7 +56,7 @@ export default {
     },
     onConnected (frame) {
       // web端订阅后端发布接口
-      let destination = WS_DEST_USER + '/1'
+      let destination = WS_DEST_USER + '/1/user'
       this.$stompClient.subscribe(destination, val => {
         // 如果返回了结果
         console.log(val.body)
@@ -64,13 +65,15 @@ export default {
         }
       })
     },
+    test () {
+      alert(this.$_.add(6, 4))
+      let x = this.$moment().add(3, 'month').format('YYYY-MM-DD')
+      alert(x)
+    },
     getAllUser () {
       restApi.getAllUser(1, 100).then(data => {
         alert(data)
       })
-    },
-    alert1 () {
-      alert('未登录, 请先登录')
     },
     checkIsError () {
       if (this.$route.query.errorCode === '399') {

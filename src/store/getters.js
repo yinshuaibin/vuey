@@ -2,5 +2,8 @@
 export default {
   getErrorCode: (state) => {
     return state.errorCode
+  },
+  token: (state) => {
+    return state.token
   }
 }
