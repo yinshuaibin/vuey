@@ -23,3 +23,9 @@ restApi.insertUser = (param) => {
 restApi.login = (param) => {
   return post('/login', param)
 }
+restApi.getProgress = () => {
+  return get('/getProgress')
+}
+restApi.startProgress = () => {
+  return get('/startProgress')
+}

@@ -8,7 +8,13 @@
   <div>
     <h1>{{ msg }}</h1>
     <h2>1111111111111111111111111111111111111111111111111111111111111111</h2>
+    <div>{{progress}}</div>
     <Button @click="getAllUser()">点我</Button>
+    <Progress :percent="progress" v-show="progress > 0" :hide-info="progress === 100">
+        <Icon type="checkmark-circled"></Icon>
+        <span>成功</span>
+    </Progress>
+    <Button @click="getProgress()">测试进度条</Button>
     <Button @click="test">测试全局lodash与moment</Button>
   </div>
 </template>
@@ -29,7 +35,8 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       loginUser: {
         username: ''
-      }
+      },
+      progress: 0
     }
   },
   created () {
@@ -79,6 +86,30 @@ export default {
       if (this.$route.query.errorCode === '399') {
         alert('您还没有登录,请重新登录后再进行操作')
       }
+    },
+    getProgress () {
+      restApi.getProgress().then(data => {
+        return data
+      }).then(data => {
+        this.startProdress(new Date().getTime())
+      })
+    },
+    startProdress (startTime) {
+      let _this = this
+      restApi.startProgress().then(data => {
+        _this.progress = data
+        if (data < 100) {
+          var timer = window.setTimeout(() => {
+            let nowTime = new Date().getTime()
+            // 模拟超时请求
+            if ((nowTime - startTime) > 13000) {
+              clearTimeout(timer)
+              return
+            }
+            this.startProdress(startTime)
+          }, 500)
+        }
+      })
     }
   },
   mounted () {

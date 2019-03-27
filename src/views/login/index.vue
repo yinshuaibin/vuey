@@ -11,6 +11,7 @@
           <Icon type="ios-lock-outline" slot="prepend"></Icon>
         </Input>
        </FormItem>
+       <div>{{errorMsg}}</div>
        <Button @click="showPwd">{{this.pwdType === 'password' ? '显示密码' : '隐藏密码'}}</Button>
        <Button @click="login" type="primary" :loading="loading">登录</Button>
     </Form>
@@ -39,6 +40,7 @@ export default {
       }
     }
     return {
+      errorMsg: '',
       loginUser: {
         username: 'ss',
         password: '1'
@@ -87,6 +89,8 @@ export default {
           restApi.login(this.loginUser).then(data => {
             if (data.msg === '登录成功') {
               this.$router.push('/main')
+            } else {
+              this.errorMsg = data.msg
             }
           })
           this.loading = false

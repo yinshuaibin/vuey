@@ -2,7 +2,7 @@
 let env = process.env.NODE_ENV
 // const声明的是常亮,默认不可改变
 // 开发地址
-const devUrl = 'http://127.0.0.1:8888'
+const devUrl = 'http://127.0.0.1:8090'
 // 生产环境地址
 const prodUrl = 'http://127.0.0.1:8888'
 // 备用地址
