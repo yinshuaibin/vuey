@@ -16,6 +16,7 @@
     </Progress>
     <Button @click="getProgress()">测试进度条</Button>
     <Button @click="test">测试全局lodash与moment</Button>
+    <Button @click="webSocketSend">测试向客户端发送消息</Button>
   </div>
 </template>
 
@@ -26,7 +27,10 @@ import Stomp from 'stompjs'
 import Vue from 'vue'
 import {
   WS_URL,
-  WS_DEST_USER
+  WS_DEST_USER,
+  WS_DEST_TOPIC,
+  WS_SEND_WEB,
+  WS_STOMP
 } from '../utils/config'
 export default {
   name: 'HelloWorld',
@@ -43,34 +47,42 @@ export default {
     Vue.prototype.$stompClient = Stomp.over(new SockJS(WS_URL))
   },
   watch: {
-    // errorCode (val, oldVar) {
-    //   if (val === '399') {
-    //     this.alert1()
-    //   }
-    //   this.$store.commit('setErrorCode', '0')
-    // }
+
   },
   computed: {
-    // errorCode () {
-    //   return this.$store.getters.getErrorCode
-    // }
+
   },
   methods: {
     connect () {
       this.$stompClient.connect({ }, frame => {
-        this.onConnected(frame)
+        this.onConnectedOneToOne(frame)
+        this.onConnectedTopic(frame)
       })
     },
-    onConnected (frame) {
+    onConnectedOneToOne (frame) {
       // web端订阅后端发布接口
       let destination = WS_DEST_USER + '/1/user'
       this.$stompClient.subscribe(destination, val => {
         // 如果返回了结果
         console.log(val.body)
         if (val.body) {
-          alert('websocket发送消息成功')
+          // alert('websocket发送消息成功')
         }
       })
+    },
+    onConnectedTopic (frame) {
+      // web端订阅后端发布接口
+      let destination = WS_DEST_TOPIC + WS_DEST_TOPIC
+      this.$stompClient.subscribe(destination, val => {
+        // 如果返回了结果
+        console.log(val.body)
+        if (val.body) {
+          // alert('websocket发送消息成功')
+        }
+      })
+    },
+    webSocketSend () {
+      this.$stompClient.send(WS_SEND_WEB + WS_STOMP, { atytopic: 'greetings' }, JSON.stringify({ 'name': name }))
     },
     test () {
       alert(this.$_.add(6, 4))
