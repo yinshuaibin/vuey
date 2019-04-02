@@ -45,6 +45,7 @@ export default {
   },
   created () {
     Vue.prototype.$stompClient = Stomp.over(new SockJS(WS_URL))
+    this.$stompClient.debug = null
   },
   watch: {
 
