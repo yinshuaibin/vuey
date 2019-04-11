@@ -1,20 +1,6 @@
 <template>
-  <div style="width:200px;margin-left:50px">
-    <Form :model="loginUser"  ref="loginUser" :rules="loginRule">
-      <FormItem prop="username" label="用户名">
-        <Input  v-model="loginUser.username" placeholder="用户名">
-          <Icon type="ios-person-outline" slot="prepend"></Icon>
-        </Input>
-      </FormItem>
-      <FormItem prop="password" label="密码">
-        <Input :type="pwdType" width="30%" v-model="loginUser.password" placeholder="密码">
-          <Icon type="ios-lock-outline" slot="prepend"></Icon>
-        </Input>
-       </FormItem>
-       <div>{{errorMsg}}</div>
-       <Button @click="showPwd">{{this.pwdType === 'password' ? '显示密码' : '隐藏密码'}}</Button>
-       <Button @click="login" type="primary" :loading="loading">登录</Button>
-    </Form>
+  <div>
+    <h1>父页面2的子页面2</h1>
   </div>
 </template>
 
@@ -33,8 +19,8 @@ export default {
       }
     }
     const validatePass = (rule, value, callback) => {
-      if (value.length > 10) {
-        callback(new Error('密码不能大于10位'))
+      if (value.length < 10) {
+        callback(new Error('密码不能小于10位'))
       } else {
         callback()
       }
@@ -45,15 +31,9 @@ export default {
         username: 'ss',
         password: '1'
       },
-      loginRule: {
-        username: [
-          {required: true, message: '用户名不能为空', trigger: 'blur'},
-          { validator: validateUsername }
-        ],
-        password: [
-          {required: true, message: '密码不能为空', trigger: 'blur'},
-          { validator: validatePass }
-        ]
+      loginRules: {
+        username: [{required: true, trigger: 'blur'}, { validator: validateUsername }],
+        password: [{required: true, trigger: 'blur'}, { validator: validatePass }]
       },
       loading: false,
       pwdType: 'password',
@@ -94,7 +74,7 @@ export default {
           this.loading = true
           restApi.login(this.loginUser).then(data => {
             if (data.msg === '登录成功') {
-              this.$router.push('/index')
+              this.$router.push('/main')
             } else {
               this.errorMsg = data.msg
             }
