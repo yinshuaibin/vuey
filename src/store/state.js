@@ -20,6 +20,18 @@ export default {
       name: '测试页面2',
       router: '/index/modal1',
       calss: 'el-icon-menu'
+    }, {
+      id: 4,
+      name: '父页面1',
+      router: '/index/modal2',
+      calss: 'el-icon-menu'
+    }, {
+      id: 5,
+      name: '父页面1的子页面',
+      router: '/index/modal2_1',
+      calss: 'el-icon-menu',
+      parentId: 4
     }
+
   ]
 }

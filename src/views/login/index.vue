@@ -100,6 +100,7 @@ export default {
             }
           })
           this.loading = false
+          console.log('success submit!!')
         } else {
           console.log('error submit!!')
           return false

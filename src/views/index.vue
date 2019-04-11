@@ -18,7 +18,17 @@
               text-color="#fff"
               active-text-color="#ffd04b">
               <div v-for="(menu, key) in menuList" :key="key">
-              <el-menu-item  :index="menu.router"  >
+              <el-submenu v-if="menu.children && menu.children.length >= 1">
+                <template slot="title">
+                  <i class="el-icon-location"></i>
+                  <span>{{menu.name}}</span>
+                </template>
+                <el-menu-item v-for="(childrenMenu, key) in menu.children" :key="key" >
+                  <!-- <i :class="childrenMenu.calss"></i>-->
+                  <span>{{childrenMenu}}</span>
+                  </el-menu-item>
+              </el-submenu>
+              <el-menu-item v-if="!menu.children"   :index="menu.router"  >
                   <i :class="menu.calss"></i>
                   <span>{{menu.name}}</span>
               </el-menu-item>
