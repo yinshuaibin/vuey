@@ -82,6 +82,13 @@ export default {
       }
     },
     login () {
+      this.$http({
+        method: 'get',
+        url: 'http://127.0.0.1:8090/y/findUser?' + 'pageNum=' + 1 + '&pageSize=' + 100,
+        emulateJSON: true
+      }).then(data => {
+
+      })
       this.$refs['loginUser'].validate(valid => {
         if (valid) {
           // this.loading = true

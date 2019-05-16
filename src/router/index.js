@@ -12,6 +12,7 @@ import modal2 from '@/views/test2/modal2'
 import modal3 from '@/views/test2/modal2_1'
 import modal4 from '@/views/test2/modal2_2'
 import modal5 from '@/views/test2/modal2_2_1'
+import regionalNodeList from '@/views/regionalNode/list'
 
 Vue.use(Router)
 
@@ -53,6 +54,9 @@ let router = new Router({
           path: 'modal2_2_1',
           name: 'modal2_2_1',
           component: modal5
+        }, {
+          path: 'regionalNodeList',
+          component: regionalNodeList
         }
       ]
     },

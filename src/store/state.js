@@ -31,6 +31,11 @@ export default {
       router: '/index/modal2_1',
       calss: 'el-icon-menu',
       parentId: 4
+    }, {
+      id: 6,
+      name: '管理页面模板',
+      router: '/index/regionalNodeList',
+      calss: 'el-icon-menu'
     }
 
   ]
